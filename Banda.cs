@@ -1,32 +1,25 @@
-class Musica
+class Banda
 {
-    public Musica(Banda artista, string nome)
+    private List<Album> albums = new List<Album>();
+
+    public Banda(string nome)
     {
-        Artista = artista;
         Nome = nome;
     }
-    public string Nome { get; }
-    public Banda Artista { get; set; }
-    public int Duracao { get; set; }
-    public bool Disponivel { get; set; }
-    public string DescricaoResumida =>
-        $"A música {Nome} pertence à banda {Artista}";
 
+    public string Nome {  get; }
 
-
-
-    public void ExibirFichaTecnica()
+    public void AdicionarAlbum(Album album)
     {
-        Console.WriteLine($"Nome: {Nome}");
-        Console.WriteLine($"Artista: {Artista.Nome}");
-        Console.WriteLine($"Duração: {Duracao}");
-        if (Disponivel)
+        albums.Add(album);
+    }
+
+    public void ExibirDiscografia()
+    {
+        Console.WriteLine($"Discografia da banda {Nome}");
+        foreach (Album album in albums)
         {
-            Console.WriteLine("Disponível no plano.");
-        }
-        else
-        {
-            Console.WriteLine("Adquira o plano Premium");
+            Console.WriteLine($"Álbum: {album.Nome} ({album.DuracaoTotal})");
         }
     }
 }
